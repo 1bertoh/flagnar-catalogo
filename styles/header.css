@@ -1,0 +1,32 @@
+/* Estilos do Header */
+.header {
+    background-color: transparent;
+    z-index: 10;
+    mix-blend-mode: difference; /* Aplica o efeito de mistura */
+}
+
+.header__title {
+    color: white; /* Cor do texto */
+    text-transform: uppercase;
+}
+
+/* Estilos das Seções */
+.section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.section--dark {
+    /* background-color: #131313; Fundo escuro */
+    /*color: #f9f5ec;  Texto claro */
+}
+
+.section--light {
+    /*background-color: #f9f5ec;  Fundo claro */
+    color: #131313; /* Texto escuro */
+}

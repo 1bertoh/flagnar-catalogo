@@ -126,19 +126,27 @@ const Carousel = () => {
       <div className="swiper-wrapper">
         {[1, 2, 3, 4, 5].map((item, index) => (
           <div
-            key={index}
-            ref={(el) => {
-              if (el) slideRefs.current[index] = el; // Atualiza a referência apenas se o elemento não for nulo
-            }}
-            className="swiper-slide relative bg-cover bg-center cursor-pointer rounded-tr-full rounded-bl-full overflow-hidden h-64 w-48 bg-slate-600"
-            data-swiper-slide-index={index} // Adiciona um atributo para identificar o índice real
-            style={{ backgroundImage: `url(/path/to/image${item}.jpg)` }}
-            onClick={() => handleClick(index)}
-          >
-            <div className="absolute bottom-0 left-0 right-0 bg-black h-full bg-opacity-50 p-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
-              <h2 className="text-white text-xl font-bold">Título {item}</h2>
-            </div>
+          key={index}
+          ref={(el) => {
+            if (el) slideRefs.current[index] = el; // Atualiza a referência apenas se o elemento não for nulo
+          }}
+          className="swiper-slide relative bg-cover bg-center cursor-pointer rounded-tr-full rounded-bl-full overflow-hidden h-64 w-48 bg-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          data-swiper-slide-index={index} // Adiciona um atributo para identificar o índice real
+          style={{ backgroundImage: `url(/path/to/image${item}.jpg)` }}
+          onClick={() => handleClick(index)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              handleClick(index);
+            }
+          }}
+          role="button" // Indica que o elemento é clicável
+          aria-label={`Expandir slide ${index + 1}`} // Descrição acessível
+          tabIndex={0} // Torna o elemento focável
+        >
+          <div className="absolute bottom-0 left-0 right-0 bg-black h-full bg-opacity-50 p-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
+            <h2 className="text-white text-xl font-bold">Título {item}</h2>
           </div>
+        </div>
         ))}
       </div>
     </div>

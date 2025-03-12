@@ -1,36 +1,36 @@
 // components/Model.tsx
 import React, { useEffect, useRef } from "react";
 import { useFrame, useLoader } from "@react-three/fiber";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
+// import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+// import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 import { Box3, TextureLoader, Vector3 } from "three";
 import { Group, Mesh, MeshStandardMaterial } from "three";
 import { useGLTF } from "@react-three/drei";
 
 const Model = () => {
   // Carregar o arquivo .mtl (materiais)
-  const materials = useLoader(MTLLoader, "/3d/b1.mtl");
+  // const materials = useLoader(MTLLoader, "/3d/b1.mtl");
   const { scene } = useGLTF("/3d/boia1.glb");
   const modelRef = useRef<Group>(null);
 
   // Carregar o arquivo .obj com os materiais
-  const obj = useLoader(OBJLoader, "/3d/b1.obj", (loader) => {
-    materials.preload();
-    loader.setMaterials(materials);
-  }) as Group;
+  // const obj = useLoader(OBJLoader, "/3d/b1.obj", (loader) => {
+  //   materials.preload();
+  //   loader.setMaterials(materials);
+  // }) as Group;
 
   // Carregar a textura
   const texture = useLoader(TextureLoader, "/3d/texture.png");
 
   // Aplicar a textura ao modelo
-  obj.traverse((child) => {
-    if (child instanceof Mesh) {
-      if (child.material instanceof MeshStandardMaterial) {
-        child.material.map = texture;
-        child.material.needsUpdate = true;
-      }
-    }
-  });
+  // obj.traverse((child) => {
+  //   if (child instanceof Mesh) {
+  //     if (child.material instanceof MeshStandardMaterial) {
+  //       child.material.map = texture;
+  //       child.material.needsUpdate = true;
+  //     }
+  //   }
+  // });
 
   useEffect(() => {
     if (modelRef.current) {
@@ -54,13 +54,14 @@ const Model = () => {
   });
 
   return (
-    <primitive
-      ref={modelRef}
-      object={scene}
-      position={[0, 0, 0]}
-      rotation={[0, 0, 0]}
-      scale={[1, 1, 1]} // Ajuste a escala conforme necessário
-    />
+    <div></div>
+  //   <primitive
+  //     ref={modelRef}
+  //     object={scene}
+  //     position={[0, 0, 0]}
+  //     rotation={[0, 0, 0]}
+  //     scale={[1, 1, 1]} // Ajuste a escala conforme necessário
+  //   />
   );
 };
 
